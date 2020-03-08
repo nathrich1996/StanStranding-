@@ -54,7 +54,7 @@ public class Part : MonoBehaviour
         PlayerController pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         if (pc.GetPlayerState() == PlayerState.right)
         {
-            if (target.transform.position.x > transform.position.x)
+            if (pc.transform.position.x > transform.position.x)
             {
                 movVectorPart = target.transform.position - transform.position;
                 transform.Translate(bodySpeedDecrement * partSpeed * movVectorPart.normalized * Time.deltaTime);
@@ -62,7 +62,7 @@ public class Part : MonoBehaviour
         }
         else if (pc.GetPlayerState() == PlayerState.left)
         {
-            if (target.transform.position.x < transform.position.x)
+            if (pc.transform.position.x < transform.position.x)
             {
                 movVectorPart = target.transform.position - transform.position;
                 transform.Translate(bodySpeedDecrement * partSpeed * movVectorPart.normalized * Time.deltaTime);
@@ -70,7 +70,7 @@ public class Part : MonoBehaviour
         }
         if (pc.GetPlayerState() == PlayerState.up)
         {
-            if (target.transform.position.y > transform.position.y)
+            if (pc.transform.position.y > transform.position.y)
             {
                 movVectorPart = target.transform.position - transform.position;
                 transform.Translate(bodySpeedDecrement * partSpeed * movVectorPart.normalized * Time.deltaTime);
@@ -78,7 +78,7 @@ public class Part : MonoBehaviour
         }
         else if (pc.GetPlayerState() == PlayerState.down)
         {
-            if (target.transform.position.y < transform.position.y)
+            if (pc.transform.position.y < transform.position.y)
             {
                 movVectorPart = target.transform.position - transform.position;
                 transform.Translate(bodySpeedDecrement * partSpeed * movVectorPart.normalized * Time.deltaTime);

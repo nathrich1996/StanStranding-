@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     
     Rigidbody2D rbPlayer;
     Vector2 movVector;
-    Vector2[] oldPositions;
+    
     PlayerState ps;
     public float speed;
     void Start()
