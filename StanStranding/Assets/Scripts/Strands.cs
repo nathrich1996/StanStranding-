@@ -8,13 +8,15 @@ public class Strands : MonoBehaviour
 
     [HideInInspector]
     public List<GameObject> strands;
-    int strandsLength;
+
+    public int strandsLength;
+    [HideInInspector]
     // Start is called before the first frame update
     void Start()
     {
         strands.Add(this.gameObject);
         strandsLength = 1;
-       
+        Debug.Log("Strand Size: " + strands.Count.ToString());
     }
 
     // Update is called once per frame
@@ -27,6 +29,7 @@ public class Strands : MonoBehaviour
         strands.Add(part);
         strandsLength++;
         Debug.Log("Found a Strand");
+        Debug.Log("Strand Size: " + strands.Count.ToString());
     }
     public GameObject GetTailStrand()
     {

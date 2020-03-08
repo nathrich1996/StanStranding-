@@ -7,13 +7,16 @@ public class Part : MonoBehaviour
     bool isAttached;
     GameObject target;
     Rigidbody2D rb;
-
-    float partSpeed;
+    Vector2 movVectorPart;
+    public float partSpeed;
+    public float bodySpeedDecrement;
     void Start()
     {
         isAttached = false;
         rb = GetComponent<Rigidbody2D>();
-        partSpeed = 5.0f;
+        partSpeed = 4.5f;
+        movVectorPart = new Vector2();
+        bodySpeedDecrement = .97f;
     }
 
     // Update is called once per frame
@@ -21,53 +24,71 @@ public class Part : MonoBehaviour
     {
         if (isAttached)
         {
-            //MoveToTarget();
-            Vector2 movVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-            transform.Translate(partSpeed * movVector.normalized * Time.deltaTime);
+            MoveToTarget();
         }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Triggered");
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && !isAttached)
         {
             Debug.Log("Triggered");
             target = other.GetComponent<Strands>().GetTailStrand();
             isAttached = true;
-            other.GetComponent<Strands>().InsertStrand(this.gameObject);
+            other.GetComponent<Strands>().InsertStrand(gameObject);
+            transform.position = new Vector2(other.transform.position.x, other.transform.position.y - 2f );
+
         }
+            //if (other.gameObject.tag == "Strand" && isAttached)
+            //{
+            //    Vector2 bodyMovVector = transform.position - other.transform.position;
+            //    transform.position = new Vector2(other.transform.position.x, other.transform.position.y - 2f );
+            //    DecreaseSpeed(2.5f);
+            //    isAttached = true; 
+            //    //other.gameObject.transform.Translate(.005f * -partSpeed * bodyMovVector.normalized * Time.deltaTime);
+            //    Debug.Log("Strand Collided");
+            //}
     }
     void MoveToTarget()
     {
         PlayerController pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         if (pc.GetPlayerState() == PlayerState.right)
         {
-            if (pc.transform.position.x > transform.position.x)
+            if (target.transform.position.x > transform.position.x)
             {
-                rb.MovePosition(new Vector2(transform.position.x + (partSpeed * Time.deltaTime), transform.position.y));
+                movVectorPart = target.transform.position - transform.position;
+                transform.Translate(bodySpeedDecrement * partSpeed * movVectorPart.normalized * Time.deltaTime);
             }
         }
         else if (pc.GetPlayerState() == PlayerState.left)
         {
-            if (pc.transform.position.x < transform.position.x)
+            if (target.transform.position.x < transform.position.x)
             {
-                rb.MovePosition(new Vector2(transform.position.x - (partSpeed * Time.deltaTime), transform.position.y));
+                movVectorPart = target.transform.position - transform.position;
+                transform.Translate(bodySpeedDecrement * partSpeed * movVectorPart.normalized * Time.deltaTime);
             }
         }
         if (pc.GetPlayerState() == PlayerState.up)
         {
-            if (pc.transform.position.y > transform.position.y)
+            if (target.transform.position.y > transform.position.y)
             {
-                rb.MovePosition(new Vector2(transform.position.x , transform.position.y + (partSpeed * Time.deltaTime)));
+                movVectorPart = target.transform.position - transform.position;
+                transform.Translate(bodySpeedDecrement * partSpeed * movVectorPart.normalized * Time.deltaTime);
             }
         }
         else if (pc.GetPlayerState() == PlayerState.down)
         {
-            if (pc.transform.position.y < transform.position.y)
+            if (target.transform.position.y < transform.position.y)
             {
-                rb.MovePosition(new Vector2(transform.position.x, transform.position.y - (partSpeed * Time.deltaTime)));
+                movVectorPart = target.transform.position - transform.position;
+                transform.Translate(bodySpeedDecrement * partSpeed * movVectorPart.normalized * Time.deltaTime);
             }
         }
 
+    }
+    public void DecreaseSpeed(float val)
+    {
+        partSpeed -= val;
+        bodySpeedDecrement -= .01f;
     }
 }

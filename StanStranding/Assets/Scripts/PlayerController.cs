@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 {
     
     Rigidbody2D rbPlayer;
-
+    Vector2 movVector;
     Vector2[] oldPositions;
     PlayerState ps;
     public float speed;
@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
     }
     void AdjustMovement()
     {
-        Vector2 movVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        movVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         transform.Translate(speed * movVector.normalized * Time.deltaTime);
     }
 
@@ -66,4 +66,8 @@ public class PlayerController : MonoBehaviour
         return ps;
     }
     
+    public Vector2 ReturnMoveVector()
+    {
+        return movVector;
+    }
 }
