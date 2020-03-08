@@ -15,14 +15,14 @@ public enum PlayerState
 public class PlayerController : MonoBehaviour
 {
     
-    Rigidbody2D rbPlayer;
+    public Rigidbody2D rbPlayer;
     Vector2 movVector;
     
     PlayerState ps;
     public float speed;
     void Start()
     {
-        rbPlayer = gameObject.GetComponent<Rigidbody2D>();
+        
         ps = PlayerState.idle;
     }
 
@@ -59,6 +59,24 @@ public class PlayerController : MonoBehaviour
     {
         movVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         transform.Translate(speed * movVector.normalized * Time.deltaTime);
+        
+        //if (ps ==PlayerState.right)
+        //{
+        //    rbPlayer.MovePosition(new Vector2(transform.position.x + (Time.deltaTime * speed), transform.position.y));
+        //}
+        //else if (ps == PlayerState.left)
+        //{
+        //    rbPlayer.MovePosition(new Vector2(transform.position.x + (Time.deltaTime * -speed), transform.position.y));
+        //}
+        //if (ps == PlayerState.up)
+        //{
+        //    rbPlayer.MovePosition(new Vector2(transform.position.x,transform.position.y + (Time.deltaTime * speed)));
+        //}
+        //else if (ps == PlayerState.down)
+        //{
+        //    rbPlayer.MovePosition(new Vector2(transform.position.x, transform.position.y + (Time.deltaTime * -speed)));
+        //}
+
     }
 
     public PlayerState GetPlayerState()
