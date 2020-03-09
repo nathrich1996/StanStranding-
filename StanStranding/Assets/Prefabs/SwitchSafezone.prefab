@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 818655652311408180}
   - component: {fileID: 818655652311408185}
   m_Layer: 0
-  m_Name: Switch 1
+  m_Name: SwitchSafezone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

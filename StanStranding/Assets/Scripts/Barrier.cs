@@ -29,7 +29,9 @@ public class Barrier : MonoBehaviour
         if (switches == 0)
         {
             isDestroyed = true;
+            gameObject.GetComponent<AudioSource>().Play();
             Destroy(gameObject);
+            
         }
     }
 }

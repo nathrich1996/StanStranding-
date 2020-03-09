@@ -28,6 +28,7 @@ public class Strands : MonoBehaviour
     {
         strands.Add(part);
         strandsLength++;
+        gameObject.GetComponent<AudioSource>().Play();
         GameController.CollectedStrand();
         Debug.Log("Found a Strand");
         Debug.Log("Strand Size: " + strands.Count.ToString());
