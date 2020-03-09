@@ -33,6 +33,7 @@ public class Switch : MonoBehaviour
                 firstActivated = true;
             }
             Debug.Log("Switch Activated");
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioCotroller>().ChangeToCalm();
         }
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -41,6 +42,7 @@ public class Switch : MonoBehaviour
         {
             isActivated = false;
             sz.DeactivateZone();
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioCotroller>().ChangeToTense();
         }
     }
 
