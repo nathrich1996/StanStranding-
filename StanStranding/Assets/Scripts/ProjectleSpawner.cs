@@ -18,7 +18,7 @@ public class ProjectleSpawner : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= 2)
+        if (timer >= 3)
         {
             SpawnProjectile();
             timer = 0;

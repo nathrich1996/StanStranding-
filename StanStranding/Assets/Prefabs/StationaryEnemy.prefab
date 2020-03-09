@@ -122,5 +122,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnDirection: 0
-  spawnPoint: 0
+  spawnPoint: 100
   proj: {fileID: 870953193587098141, guid: 35f0b2512f6bd5740a4d1ae476ec948a, type: 3}
