@@ -10,6 +10,12 @@ public static class GameController
     public static void DecreaseLives ()
     {
         PlayerLives--;
+        if (PlayerLives <= 0)
+        {
+            PlayerLives = 5;
+            SceneManager.LoadScene(0);
+            
+        }
     }
     public static void CollectedStrand()
     {
